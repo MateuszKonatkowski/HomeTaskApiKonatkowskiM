@@ -5,7 +5,7 @@ Feature: Joke retrieval with incorrect  id
   So that I understand why attempt failed
 
   @ScenarioD @Negative
-  Scenario: Scenario: Attempt to retrieve a joke that does not exist
+  Scenario: Attempt to retrieve a joke that does not exist
     Given the joke service is available
     When the user retrieves a specific joke by id 999
     Then the response status should be 404
