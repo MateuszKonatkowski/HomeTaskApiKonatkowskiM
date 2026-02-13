@@ -4,7 +4,7 @@ Feature: Specific Joke retrieval
   I want to retrieve a specific joke
   So that I can share it
 
-  @ScenarioB
+  @ScenarioB @Positive
   Scenario Outline: Retrieve a specific joke by id
     Given the joke service is available
     When the user retrieves a specific joke by id <jokeId>

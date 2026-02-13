@@ -108,4 +108,10 @@ public class JokeStepsDefinitions {
         }
     }
 
+    @And("the response should contain message property with {string} value")
+    public void theResponseShouldContainMessagePropertyWithValue(String errorMessage) {
+        response.then()
+                .body("message", equalTo(errorMessage));
+    }
+
 }

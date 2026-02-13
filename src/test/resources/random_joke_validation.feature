@@ -7,7 +7,7 @@ Feature: Random joke validation
   Background:
     Given the joke service is available
 
-  @ScenarioC
+  @ScenarioC @Positive
   Scenario: Retrieve a random joke and verify response patterns
     When the user requests a random joke
     Then the response status should be 200

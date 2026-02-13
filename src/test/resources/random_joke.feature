@@ -4,7 +4,7 @@ Feature: Random Joke retrieval
   I want to retrieve a random joke
   So that I can share it
 
-  @ScenarioA
+  @ScenarioA @Positive
   Scenario: Retrieve a random joke and verify response structure
     Given the joke service is available
     When the user requests a random joke
