@@ -26,6 +26,13 @@ public class JokeStepsDefinitions {
 
     }
 
+    @When("the user retrieves a specific joke by id {int}")
+    public void theUserRetrieveASpecificJokeByIdJokeId(int jokeId) {
+        response = given()
+                .when()
+                .get(PATH + "/" + jokeId);
+    }
+
     @Then("the response status should be {int}")
     public void theResponseStatusShouldBe(int status) {
         response.then().statusCode(status);
@@ -59,6 +66,30 @@ public class JokeStepsDefinitions {
                 .body("id", not(emptyOrNullString()))
                 .body("id", instanceOf(Integer.class))
                 .body("id", greaterThan(0));
+    }
+
+    @And("the response should contain type property with {string} value")
+    public void theResponseShouldContainTypePropertyWithValue(String typeValue) {
+        response.then()
+                .body("type", equalTo(typeValue));
+    }
+
+    @And("the response should contain setup property with {string} value")
+    public void theResponseShouldContainSetupPropertyWithValue(String setupValue) {
+        response.then()
+                .body("setup", equalTo(setupValue));
+    }
+
+    @And("the response should contain punchline property with {string} value")
+    public void theResponseShouldContainPunchlinePropertyWithValue(String punchlineValue) {
+        response.then()
+                .body("punchline", equalTo(punchlineValue));
+    }
+
+    @And("the response should contain id property with {int} value")
+    public void theResponseShouldContainIdPropertyWithIdValueValue(int idValue) {
+        response.then()
+                .body("id", equalTo(idValue));
     }
 
 }
