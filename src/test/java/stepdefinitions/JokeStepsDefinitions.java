@@ -1,12 +1,17 @@
 package stepdefinitions;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
 
+import java.util.List;
+import java.util.Map;
+
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 public class JokeStepsDefinitions {
@@ -90,6 +95,17 @@ public class JokeStepsDefinitions {
     public void theResponseShouldContainIdPropertyWithIdValueValue(int idValue) {
         response.then()
                 .body("id", equalTo(idValue));
+    }
+
+    @And("the joke fields should match the following patterns:")
+    public void theJokeFieldsShouldMatchTheFollowingPatterns(DataTable table) {
+        List<Map<String, String>> rows = table.asMaps(String.class, String.class);
+        for (Map<String, String> row : rows) {
+            String field = row.get("field");
+            String pattern = row.get("pattern");
+            String value = response.jsonPath().getString(field);
+            assertThat(value, matchesPattern(pattern));
+        }
     }
 
 }
